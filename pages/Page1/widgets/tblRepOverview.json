@@ -6,14 +6,14 @@
   "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
   "columnOrder": [
     "repName",
-    "bookingsARRDisplay",
+    "bookingsDisplay",
     "closedWonDeals",
-    "pipelineARRDisplay",
+    "pipelineDisplay",
     "openOpps",
     "meetingsQ1",
     "activePilots",
-    "pilotARRDisplay",
-    "pipelineCoverage"
+    "pilotDisplay",
+    "coverage"
   ],
   "defaultPageSize": 25,
   "dynamicBindingPathList": [
@@ -24,13 +24,13 @@
       "key": "primaryColumns.repName.computedValue"
     },
     {
-      "key": "primaryColumns.bookingsARRDisplay.computedValue"
+      "key": "primaryColumns.bookingsDisplay.computedValue"
     },
     {
       "key": "primaryColumns.closedWonDeals.computedValue"
     },
     {
-      "key": "primaryColumns.pipelineARRDisplay.computedValue"
+      "key": "primaryColumns.pipelineDisplay.computedValue"
     },
     {
       "key": "primaryColumns.openOpps.computedValue"
@@ -42,10 +42,10 @@
       "key": "primaryColumns.activePilots.computedValue"
     },
     {
-      "key": "primaryColumns.pilotARRDisplay.computedValue"
+      "key": "primaryColumns.pilotDisplay.computedValue"
     },
     {
-      "key": "primaryColumns.pipelineCoverage.computedValue"
+      "key": "primaryColumns.coverage.computedValue"
     }
   ],
   "dynamicTriggerPathList": [],
@@ -78,22 +78,22 @@
       "verticalAlignment": "CENTER",
       "width": 80
     },
-    "bookingsARRDisplay": {
-      "alias": "bookingsARRDisplay",
+    "bookingsDisplay": {
+      "alias": "bookingsDisplay",
       "columnType": "text",
-      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['bookingsARRDisplay']))}}",
+      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['bookingsDisplay']))}}",
       "enableFilter": false,
       "enableSort": true,
       "fontStyle": "BOLD",
       "horizontalAlignment": "RIGHT",
-      "id": "bookingsARRDisplay",
+      "id": "bookingsDisplay",
       "index": 1,
       "isCellVisible": true,
       "isDerived": false,
       "isEditable": false,
       "isVisible": true,
       "label": "Q1 Bookings",
-      "originalId": "bookingsARRDisplay",
+      "originalId": "bookingsDisplay",
       "sticky": "",
       "textSize": "0.875rem",
       "verticalAlignment": "CENTER",
@@ -159,61 +159,61 @@
       "verticalAlignment": "CENTER",
       "width": 70
     },
-    "pilotARRDisplay": {
-      "alias": "pilotARRDisplay",
+    "pilotDisplay": {
+      "alias": "pilotDisplay",
       "columnType": "text",
-      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['pilotARRDisplay']))}}",
+      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['pilotDisplay']))}}",
       "enableFilter": false,
       "enableSort": true,
       "horizontalAlignment": "RIGHT",
-      "id": "pilotARRDisplay",
+      "id": "pilotDisplay",
       "index": 7,
       "isCellVisible": true,
       "isDerived": false,
       "isEditable": false,
       "isVisible": true,
       "label": "Pilot ARR",
-      "originalId": "pilotARRDisplay",
+      "originalId": "pilotDisplay",
       "sticky": "",
       "textSize": "0.875rem",
       "verticalAlignment": "CENTER",
       "width": 110
     },
-    "pipelineARRDisplay": {
-      "alias": "pipelineARRDisplay",
+    "pipelineDisplay": {
+      "alias": "pipelineDisplay",
       "columnType": "text",
-      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['pipelineARRDisplay']))}}",
+      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['pipelineDisplay']))}}",
       "enableFilter": false,
       "enableSort": true,
       "horizontalAlignment": "RIGHT",
-      "id": "pipelineARRDisplay",
+      "id": "pipelineDisplay",
       "index": 3,
       "isCellVisible": true,
       "isDerived": false,
       "isEditable": false,
       "isVisible": true,
       "label": "Open Pipeline",
-      "originalId": "pipelineARRDisplay",
+      "originalId": "pipelineDisplay",
       "sticky": "",
       "textSize": "0.875rem",
       "verticalAlignment": "CENTER",
       "width": 130
     },
-    "pipelineCoverage": {
-      "alias": "pipelineCoverage",
+    "coverage": {
+      "alias": "coverage",
       "columnType": "text",
-      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['pipelineCoverage']))}}",
+      "computedValue": "{{tblRepOverview.processedTableData.map((currentRow, currentIndex) => ( currentRow['coverage']))}}",
       "enableFilter": false,
       "enableSort": false,
       "horizontalAlignment": "CENTER",
-      "id": "pipelineCoverage",
+      "id": "coverage",
       "index": 8,
       "isCellVisible": true,
       "isDerived": false,
       "isEditable": false,
       "isVisible": true,
       "label": "Coverage",
-      "originalId": "pipelineCoverage",
+      "originalId": "coverage",
       "sticky": "",
       "textSize": "0.875rem",
       "verticalAlignment": "CENTER",
