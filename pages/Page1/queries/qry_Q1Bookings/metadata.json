@@ -8,7 +8,12 @@
       "encodeParamsToggle": true,
       "formData": {
         "CUSTOM_ACTION": {
-          "headers": [{ "key": "", "value": "" }],
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
           "method": "GET",
           "params": [
             {
@@ -33,7 +38,7 @@
     "dynamicBindingPathList": [],
     "name": "qry_Q1Bookings",
     "pageId": "Page1",
-    "runBehaviour": "MANUAL",
-    "userSetOnLoad": false
+    "runBehaviour": "ON_PAGE_LOAD",
+    "userSetOnLoad": true
   }
 }

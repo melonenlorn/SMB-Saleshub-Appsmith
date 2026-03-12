@@ -13,10 +13,10 @@
           "params": [
             {
               "key": "q",
-              "value": "SELECT OwnerId, Owner.Name, Subject, ActivityDate, WhatId, What.Name FROM Event WHERE ActivityDate >= 2026-01-01 AND ActivityDate <= 2026-03-31 AND Subject LIKE '%Demo%' AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY Owner.Name LIMIT 500"
+              "value": "SELECT OwnerId, Owner.Name, Subject, ActivityDate, WhatId FROM Event WHERE ActivityDate >= 2026-01-01 AND ActivityDate <= 2026-03-31 AND Subject LIKE '%Demo%' ORDER BY ActivityDate DESC LIMIT 500"
             }
           ],
-          "path": "query/?q=SELECT OwnerId, Owner.Name, Subject, ActivityDate, WhatId, What.Name FROM Event WHERE ActivityDate >= 2026-01-01 AND ActivityDate <= 2026-03-31 AND Subject LIKE '%Demo%' AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY Owner.Name LIMIT 500"
+          "path": "query/?q=SELECT OwnerId, Owner.Name, Subject, ActivityDate, WhatId FROM Event WHERE ActivityDate >= 2026-01-01 AND ActivityDate <= 2026-03-31 AND Subject LIKE '%Demo%' ORDER BY ActivityDate DESC LIMIT 500"
         },
         "command": "CUSTOM_ACTION"
       },
@@ -33,7 +33,7 @@
     "dynamicBindingPathList": [],
     "name": "qry_MeetingsQ1",
     "pageId": "Page1",
-    "runBehaviour": "MANUAL",
-    "userSetOnLoad": false
+    "runBehaviour": "ON_PAGE_LOAD",
+    "userSetOnLoad": true
   }
 }
