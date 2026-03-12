@@ -69,7 +69,7 @@ export default {
     const pilots = this.pilotsByOwner();
 
     const rows = users.map(u => {
-      const id = u.User_ID_18__c;
+      const id = u.Id;
       const b = bookings[id] || { arr: 0, deals: 0 };
       const p = pipeline[id] || { arr: 0, opps: 0 };
       const m = meetings[id] || { count: 0 };
