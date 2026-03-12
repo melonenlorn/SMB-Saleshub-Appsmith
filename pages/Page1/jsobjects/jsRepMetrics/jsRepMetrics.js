@@ -125,6 +125,18 @@ export default {
     return rows.reduce((s, r) => s + r.closedWonDeals, 0);
   },
 
+  debug() {
+    return {
+      usersLoaded:    (GetAllUsers.data && GetAllUsers.data.records) ? GetAllUsers.data.records.length : 'NO DATA',
+      bookingsLoaded: (qry_Q1Bookings.data && qry_Q1Bookings.data.records) ? qry_Q1Bookings.data.records.length : 'NO DATA',
+      pipelineLoaded: (qry_OpenPipeline.data && qry_OpenPipeline.data.records) ? qry_OpenPipeline.data.records.length : 'NO DATA',
+      meetingsLoaded: (qry_MeetingsQ1.data && qry_MeetingsQ1.data.records) ? qry_MeetingsQ1.data.records.length : 'NO DATA',
+      pilotsLoaded:   (qry_PilotsQ1.data && qry_PilotsQ1.data.records) ? qry_PilotsQ1.data.records.length : 'NO DATA',
+      agedLoaded:     (qry_AgedPipeline.data && qry_AgedPipeline.data.records) ? qry_AgedPipeline.data.records.length : 'NO DATA',
+      firstUser:      (GetAllUsers.data && GetAllUsers.data.records && GetAllUsers.data.records[0]) ? GetAllUsers.data.records[0].Name : 'none',
+    };
+  },
+
   agedPipelineTable() {
     const recs = (qry_AgedPipeline.data && qry_AgedPipeline.data.records)
       ? qry_AgedPipeline.data.records : [];
