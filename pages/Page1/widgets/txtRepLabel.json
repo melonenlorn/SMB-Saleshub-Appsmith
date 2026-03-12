@@ -1,0 +1,20 @@
+{
+  "animateLoading": false,
+  "backgroundColor": "transparent",
+  "bottomRow": 37,
+  "dynamicBindingPathList": [],
+  "dynamicTriggerPathList": [],
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
+  "isVisible": true,
+  "leftColumn": 1,
+  "rightColumn": 63,
+  "text": "Rep Overview",
+  "textAlign": "LEFT",
+  "textColor": "#0f172a",
+  "topRow": 32,
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "lbl_rep",
+  "widgetName": "txtRepLabel"
+}

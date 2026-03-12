@@ -8,7 +8,12 @@
       "encodeParamsToggle": true,
       "formData": {
         "CUSTOM_ACTION": {
-          "headers": [{ "key": "", "value": "" }],
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
           "method": "GET",
           "params": [
             {
@@ -33,7 +38,7 @@
     "dynamicBindingPathList": [],
     "name": "qry_AgedPipeline",
     "pageId": "Page1",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

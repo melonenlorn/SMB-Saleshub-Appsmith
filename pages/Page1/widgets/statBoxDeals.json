@@ -1,0 +1,29 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#f0fdf4",
+  "borderRadius": "12px",
+  "bottomRow": 31,
+  "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
+  "dynamicBindingPathList": [
+    {
+      "key": "primaryText"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "iconColor": "#16a34a",
+  "iconName": "endorsed",
+  "isVisible": true,
+  "label": "Deals Won",
+  "labelTextColor": "#14532d",
+  "leftColumn": 26,
+  "primaryText": "{{jsRepMetrics.totalDeals()}}",
+  "primaryTextColor": "#1c1917",
+  "rightColumn": 38,
+  "secondaryText": "Q1 Closed Won",
+  "secondaryTextColor": "#64748b",
+  "topRow": 13,
+  "type": "STATBOX_WIDGET",
+  "version": 1,
+  "widgetId": "stat_deals",
+  "widgetName": "statBoxDeals"
+}

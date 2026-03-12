@@ -1,0 +1,35 @@
+{
+  "animateLoading": false,
+  "backgroundColor": "#0f172a",
+  "borderRadius": "0px",
+  "bottomRow": 12,
+  "boxShadow": "none",
+  "children": [
+    {
+      "backgroundColor": "transparent",
+      "bottomRow": 380,
+      "containerStyle": "none",
+      "detachFromLayout": true,
+      "dynamicBindingPathList": [],
+      "dynamicTriggerPathList": [],
+      "isVisible": true,
+      "leftColumn": 0,
+      "rightColumn": 64,
+      "topRow": 0,
+      "type": "CANVAS_WIDGET",
+      "version": 94,
+      "widgetId": "hdr_canvas",
+      "widgetName": "canvasHeader"
+    }
+  ],
+  "dynamicBindingPathList": [],
+  "dynamicTriggerPathList": [],
+  "isVisible": true,
+  "leftColumn": 0,
+  "rightColumn": 64,
+  "topRow": 0,
+  "type": "CONTAINER_WIDGET",
+  "version": 1,
+  "widgetId": "hdr_container",
+  "widgetName": "containerHeader"
+}
