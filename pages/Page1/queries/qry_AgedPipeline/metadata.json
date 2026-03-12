@@ -8,20 +8,15 @@
       "encodeParamsToggle": true,
       "formData": {
         "CUSTOM_ACTION": {
-          "headers": [
-            {
-              "key": "",
-              "value": ""
-            }
-          ],
+          "headers": [{ "key": "", "value": "" }],
           "method": "GET",
           "params": [
             {
               "key": "q",
-              "value": "SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, CloseDate, StageName, AccountId, Account.Name FROM Opportunity WHERE IsClosed = false AND CreatedDate < 2025-12-12T00:00:00Z AND Owner.GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention') ORDER BY CreatedDate ASC LIMIT 200"
+              "value": "SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, CloseDate, StageName, AccountId, Account.Name FROM Opportunity WHERE IsClosed = false AND CreatedDate < 2025-12-12T00:00:00Z AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY CreatedDate ASC LIMIT 200"
             }
           ],
-          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, CloseDate, StageName, AccountId, Account.Name FROM Opportunity WHERE IsClosed = false AND CreatedDate < 2025-12-12T00:00:00Z AND Owner.GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention') ORDER BY CreatedDate ASC LIMIT 200"
+          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, CloseDate, StageName, AccountId, Account.Name FROM Opportunity WHERE IsClosed = false AND CreatedDate < 2025-12-12T00:00:00Z AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY CreatedDate ASC LIMIT 200"
         },
         "command": "CUSTOM_ACTION"
       },

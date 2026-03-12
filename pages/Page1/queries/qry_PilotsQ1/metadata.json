@@ -8,20 +8,15 @@
       "encodeParamsToggle": true,
       "formData": {
         "CUSTOM_ACTION": {
-          "headers": [
-            {
-              "key": "",
-              "value": ""
-            }
-          ],
+          "headers": [{ "key": "", "value": "" }],
           "method": "GET",
           "params": [
             {
               "key": "q",
-              "value": "SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, StageName, AccountId, Account.Name FROM Opportunity WHERE Pilot_Opportunity__c = true AND IsClosed = false AND Owner.GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention') ORDER BY Owner.Name LIMIT 200"
+              "value": "SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, StageName, AccountId, Account.Name FROM Opportunity WHERE Winback_Pilot__c = 1 AND IsClosed = false AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY Owner.Name LIMIT 200"
             }
           ],
-          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, StageName, AccountId, Account.Name FROM Opportunity WHERE Pilot_Opportunity__c = true AND IsClosed = false AND Owner.GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention') ORDER BY Owner.Name LIMIT 200"
+          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, StageName, AccountId, Account.Name FROM Opportunity WHERE Winback_Pilot__c = 1 AND IsClosed = false AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY Owner.Name LIMIT 200"
         },
         "command": "CUSTOM_ACTION"
       },

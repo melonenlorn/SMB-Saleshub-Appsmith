@@ -18,10 +18,10 @@
           "params": [
             {
               "key": "q",
-              "value": "SELECT User_ID_18__c, Username, Name, Manager_Reports__c, GTM_Motion_User__c, Profile_ID__c FROM User WHERE IsActive = true AND (  Manager_Reports__c LIKE '%Swetlana Gossen%'   OR Manager_Reports__c LIKE '%Nathalie Jansen%'   OR Manager_Reports__c LIKE '%Nils Klems%'   OR Manager_Reports__c LIKE '%Alina Schnor%'   OR Manager_Reports__c LIKE '%Sandra Siemoneit%'   OR Manager_Reports__c LIKE '%Monika Urbanaviciute%') AND GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention')"
+              "value": "SELECT User_ID_18__c, Username, Name, Manager_Reports__c, GTM_Motion_User__c, Profile_ID__c FROM User WHERE IsActive = true AND (Manager_Reports__c LIKE '%Swetlana Gossen%' OR Manager_Reports__c LIKE '%Nathalie Jansen%' OR Manager_Reports__c LIKE '%Nils Klems%' OR Manager_Reports__c LIKE '%Alina Schnor%' OR Manager_Reports__c LIKE '%Sandra Siemoneit%' OR Manager_Reports__c LIKE '%Monika Urbanaviciute%') AND GTM_Motion_User__c = 'Inside Sales'"
             }
           ],
-          "path": "query/?q=SELECT User_ID_18__c, Username, Name, Manager_Reports__c, GTM_Motion_User__c, Profile_ID__c FROM User WHERE IsActive = true AND (  Manager_Reports__c LIKE '%Swetlana Gossen%'   OR Manager_Reports__c LIKE '%Nathalie Jansen%'   OR Manager_Reports__c LIKE '%Nils Klems%'   OR Manager_Reports__c LIKE '%Alina Schnor%'   OR Manager_Reports__c LIKE '%Sandra Siemoneit%'   OR Manager_Reports__c LIKE '%Monika Urbanaviciute%') AND GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention')"
+          "path": "query/?q=SELECT User_ID_18__c, Username, Name, Manager_Reports__c, GTM_Motion_User__c, Profile_ID__c FROM User WHERE IsActive = true AND (Manager_Reports__c LIKE '%Swetlana Gossen%' OR Manager_Reports__c LIKE '%Nathalie Jansen%' OR Manager_Reports__c LIKE '%Nils Klems%' OR Manager_Reports__c LIKE '%Alina Schnor%' OR Manager_Reports__c LIKE '%Sandra Siemoneit%' OR Manager_Reports__c LIKE '%Monika Urbanaviciute%') AND GTM_Motion_User__c = 'Inside Sales'"
         },
         "command": "CUSTOM_ACTION"
       },

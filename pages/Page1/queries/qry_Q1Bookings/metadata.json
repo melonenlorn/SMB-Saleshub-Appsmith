@@ -8,20 +8,15 @@
       "encodeParamsToggle": true,
       "formData": {
         "CUSTOM_ACTION": {
-          "headers": [
-            {
-              "key": "",
-              "value": ""
-            }
-          ],
+          "headers": [{ "key": "", "value": "" }],
           "method": "GET",
           "params": [
             {
               "key": "q",
-              "value": "SELECT OwnerId, Owner.Name, Amount, Name, AccountId, Account.Name, CloseDate FROM Opportunity WHERE StageName = 'Closed Won' AND CloseDate >= 2026-01-01 AND CloseDate <= 2026-03-31 AND Owner.GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention') ORDER BY Owner.Name LIMIT 500"
+              "value": "SELECT OwnerId, Owner.Name, Amount, Name, AccountId, Account.Name, CloseDate FROM Opportunity WHERE StageName = 'Closed Won' AND CloseDate >= 2026-01-01 AND CloseDate <= 2026-03-31 AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY Owner.Name LIMIT 500"
             }
           ],
-          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, AccountId, Account.Name, CloseDate FROM Opportunity WHERE StageName = 'Closed Won' AND CloseDate >= 2026-01-01 AND CloseDate <= 2026-03-31 AND Owner.GTM_Motion_User__c IN ('Subscription Expansion', 'Subscription Retention') ORDER BY Owner.Name LIMIT 500"
+          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, AccountId, Account.Name, CloseDate FROM Opportunity WHERE StageName = 'Closed Won' AND CloseDate >= 2026-01-01 AND CloseDate <= 2026-03-31 AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY Owner.Name LIMIT 500"
         },
         "command": "CUSTOM_ACTION"
       },
