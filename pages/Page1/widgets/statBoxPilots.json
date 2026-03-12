@@ -1,0 +1,29 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#ecfdf5",
+  "borderRadius": "12px",
+  "bottomRow": 31,
+  "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
+  "dynamicBindingPathList": [
+    {
+      "key": "primaryText"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "iconColor": "#0891b2",
+  "iconName": "rocket-slant",
+  "isVisible": true,
+  "label": "Aktive Pilots",
+  "labelTextColor": "#134e4a",
+  "leftColumn": 52,
+  "primaryText": "{{jsRepMetrics.totalPilots()}}",
+  "primaryTextColor": "#1c1917",
+  "rightColumn": 64,
+  "secondaryText": "Pilot_incl_Winback offen",
+  "secondaryTextColor": "#64748b",
+  "topRow": 13,
+  "type": "STATBOX_WIDGET",
+  "version": 1,
+  "widgetId": "stat_pilot",
+  "widgetName": "statBoxPilots"
+}

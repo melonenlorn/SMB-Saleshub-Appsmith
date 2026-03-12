@@ -1,0 +1,20 @@
+{
+  "animateLoading": false,
+  "backgroundColor": "transparent",
+  "bottomRow": 9,
+  "dynamicBindingPathList": [],
+  "dynamicTriggerPathList": [],
+  "fontSize": "0.875rem",
+  "fontStyle": "ITALIC",
+  "isVisible": true,
+  "leftColumn": 42,
+  "rightColumn": 62,
+  "text": "Inside Sales · Q1 2026",
+  "textAlign": "RIGHT",
+  "textColor": "#94a3b8",
+  "topRow": 4,
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "hdr_subtitle",
+  "widgetName": "txtCockpitSubtitle"
+}

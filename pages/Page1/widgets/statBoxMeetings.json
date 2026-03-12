@@ -1,0 +1,29 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#faf5ff",
+  "borderRadius": "12px",
+  "bottomRow": 31,
+  "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
+  "dynamicBindingPathList": [
+    {
+      "key": "primaryText"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "iconColor": "#7c3aed",
+  "iconName": "calendar",
+  "isVisible": true,
+  "label": "Demo Meetings",
+  "labelTextColor": "#4c1d95",
+  "leftColumn": 39,
+  "primaryText": "{{jsRepMetrics.totalMeetings()}}",
+  "primaryTextColor": "#1c1917",
+  "rightColumn": 51,
+  "secondaryText": "Events mit 'Demo' Q1",
+  "secondaryTextColor": "#64748b",
+  "topRow": 13,
+  "type": "STATBOX_WIDGET",
+  "version": 1,
+  "widgetId": "stat_meet",
+  "widgetName": "statBoxMeetings"
+}

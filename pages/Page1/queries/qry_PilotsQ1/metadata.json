@@ -38,7 +38,7 @@
     "dynamicBindingPathList": [],
     "name": "qry_PilotsQ1",
     "pageId": "Page1",
-    "runBehaviour": "ON_PAGE_LOAD",
-    "userSetOnLoad": true
+    "runBehaviour": "AUTOMATIC",
+    "userSetOnLoad": false
   }
 }

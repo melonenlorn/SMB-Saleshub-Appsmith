@@ -38,7 +38,7 @@
     "dynamicBindingPathList": [],
     "name": "qry_OpenPipeline",
     "pageId": "Page1",
-    "runBehaviour": "ON_PAGE_LOAD",
-    "userSetOnLoad": true
+    "runBehaviour": "AUTOMATIC",
+    "userSetOnLoad": false
   }
 }

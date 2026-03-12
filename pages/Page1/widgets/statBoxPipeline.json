@@ -1,0 +1,29 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#eff6ff",
+  "borderRadius": "12px",
+  "bottomRow": 31,
+  "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
+  "dynamicBindingPathList": [
+    {
+      "key": "primaryText"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "iconColor": "#2563eb",
+  "iconName": "database",
+  "isVisible": true,
+  "label": "Open Pipeline",
+  "labelTextColor": "#1e3a8a",
+  "leftColumn": 13,
+  "primaryText": "{{jsRepMetrics.formatEUR(jsRepMetrics.totalPipeline())}}",
+  "primaryTextColor": "#1c1917",
+  "rightColumn": 25,
+  "secondaryText": "Aktive Opportunities",
+  "secondaryTextColor": "#64748b",
+  "topRow": 13,
+  "type": "STATBOX_WIDGET",
+  "version": 1,
+  "widgetId": "stat_pipe",
+  "widgetName": "statBoxPipeline"
+}

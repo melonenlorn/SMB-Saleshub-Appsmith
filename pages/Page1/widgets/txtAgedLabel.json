@@ -1,0 +1,20 @@
+{
+  "animateLoading": false,
+  "backgroundColor": "transparent",
+  "bottomRow": 103,
+  "dynamicBindingPathList": [],
+  "dynamicTriggerPathList": [],
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
+  "isVisible": true,
+  "leftColumn": 1,
+  "rightColumn": 63,
+  "text": "⚠️  Aged Pipeline  ·  offen seit >90 Tagen",
+  "textAlign": "LEFT",
+  "textColor": "#b91c1c",
+  "topRow": 98,
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "lbl_aged",
+  "widgetName": "txtAgedLabel"
+}
