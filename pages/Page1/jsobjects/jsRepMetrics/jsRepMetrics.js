@@ -12,8 +12,8 @@ export default {
   },
 
   bookingsByOwner() {
-    const recs = (qry_Q1Bookings.data && qry_Q1Bookings.data.records)
-      ? qry_Q1Bookings.data.records : [];
+    const recs = (qry_Q1Bookings.data && qry_Q1Bookings.data.output && qry_Q1Bookings.data.output.records)
+      ? qry_Q1Bookings.data.output.records : [];
     const map = {};
     recs.forEach(r => {
       const id = r.OwnerId;
@@ -26,8 +26,8 @@ export default {
   },
 
   pipelineByOwner() {
-    const recs = (qry_OpenPipeline.data && qry_OpenPipeline.data.records)
-      ? qry_OpenPipeline.data.records : [];
+    const recs = (qry_OpenPipeline.data && qry_OpenPipeline.data.output && qry_OpenPipeline.data.output.records)
+      ? qry_OpenPipeline.data.output.records : [];
     const map = {};
     recs.forEach(r => {
       const id = r.OwnerId;
@@ -40,8 +40,8 @@ export default {
   },
 
   meetingsByOwner() {
-    const recs = (qry_MeetingsQ1.data && qry_MeetingsQ1.data.records)
-      ? qry_MeetingsQ1.data.records : [];
+    const recs = (qry_MeetingsQ1.data && qry_MeetingsQ1.data.output && qry_MeetingsQ1.data.output.records)
+      ? qry_MeetingsQ1.data.output.records : [];
     const map = {};
     recs.forEach(r => {
       const id = r.OwnerId;
@@ -53,8 +53,8 @@ export default {
   },
 
   pilotsByOwner() {
-    const recs = (qry_PilotsQ1.data && qry_PilotsQ1.data.records)
-      ? qry_PilotsQ1.data.records : [];
+    const recs = (qry_PilotsQ1.data && qry_PilotsQ1.data.output && qry_PilotsQ1.data.output.records)
+      ? qry_PilotsQ1.data.output.records : [];
     const map = {};
     recs.forEach(r => {
       const id = r.OwnerId;
@@ -67,8 +67,8 @@ export default {
   },
 
   repTable() {
-    const users = (GetAllUsers.data && GetAllUsers.data.records)
-      ? GetAllUsers.data.records : [];
+    const users = (GetAllUsers.data && GetAllUsers.data.output && GetAllUsers.data.output.records)
+      ? GetAllUsers.data.output.records : [];
     const bookings = jsRepMetrics.bookingsByOwner();
     const pipeline = jsRepMetrics.pipelineByOwner();
     const meetings = jsRepMetrics.meetingsByOwner();
@@ -81,19 +81,19 @@ export default {
       const mt = meetings[uid] || { count: 0 };
       const pi = pilots[uid]   || { count: 0, arr: 0 };
       return {
-        repName:          u.Name,
-        manager:          u.Manager_Reports__c || '-',
-        bookingsARR:      Math.round(bk.arr),
-        bookingsDisplay:  jsRepMetrics.formatEUR(bk.arr),
-        closedWonDeals:   bk.deals,
-        pipelineARR:      Math.round(pp.arr),
-        pipelineDisplay:  jsRepMetrics.formatEUR(pp.arr),
-        openOpps:         pp.opps,
-        meetingsQ1:       mt.count,
-        activePilots:     pi.count,
-        pilotARR:         Math.round(pi.arr),
-        pilotDisplay:     jsRepMetrics.formatEUR(pi.arr),
-        coverage:         bk.deals > 0 ? (pp.arr / (bk.arr || 1)).toFixed(1) + 'x' : '-',
+        repName:         u.Name,
+        manager:         u.Manager_Reports__c || '-',
+        bookingsARR:     Math.round(bk.arr),
+        bookingsDisplay: jsRepMetrics.formatEUR(bk.arr),
+        closedWonDeals:  bk.deals,
+        pipelineARR:     Math.round(pp.arr),
+        pipelineDisplay: jsRepMetrics.formatEUR(pp.arr),
+        openOpps:        pp.opps,
+        meetingsQ1:      mt.count,
+        activePilots:    pi.count,
+        pilotARR:        Math.round(pi.arr),
+        pilotDisplay:    jsRepMetrics.formatEUR(pi.arr),
+        coverage:        bk.deals > 0 ? (pp.arr / (bk.arr || 1)).toFixed(1) + 'x' : '-',
       };
     });
 
@@ -101,45 +101,40 @@ export default {
   },
 
   totalBookings() {
-    const rows = jsRepMetrics.repTable();
-    return rows.reduce((s, r) => s + r.bookingsARR, 0);
+    return jsRepMetrics.repTable().reduce((s, r) => s + r.bookingsARR, 0);
   },
 
   totalPipeline() {
-    const rows = jsRepMetrics.repTable();
-    return rows.reduce((s, r) => s + r.pipelineARR, 0);
+    return jsRepMetrics.repTable().reduce((s, r) => s + r.pipelineARR, 0);
   },
 
   totalMeetings() {
-    const rows = jsRepMetrics.repTable();
-    return rows.reduce((s, r) => s + r.meetingsQ1, 0);
+    return jsRepMetrics.repTable().reduce((s, r) => s + r.meetingsQ1, 0);
   },
 
   totalPilots() {
-    const rows = jsRepMetrics.repTable();
-    return rows.reduce((s, r) => s + r.activePilots, 0);
+    return jsRepMetrics.repTable().reduce((s, r) => s + r.activePilots, 0);
   },
 
   totalDeals() {
-    const rows = jsRepMetrics.repTable();
-    return rows.reduce((s, r) => s + r.closedWonDeals, 0);
+    return jsRepMetrics.repTable().reduce((s, r) => s + r.closedWonDeals, 0);
   },
 
   debug() {
     return {
-      usersLoaded:    (GetAllUsers.data && GetAllUsers.data.records) ? GetAllUsers.data.records.length : 'NO DATA',
-      bookingsLoaded: (qry_Q1Bookings.data && qry_Q1Bookings.data.records) ? qry_Q1Bookings.data.records.length : 'NO DATA',
-      pipelineLoaded: (qry_OpenPipeline.data && qry_OpenPipeline.data.records) ? qry_OpenPipeline.data.records.length : 'NO DATA',
-      meetingsLoaded: (qry_MeetingsQ1.data && qry_MeetingsQ1.data.records) ? qry_MeetingsQ1.data.records.length : 'NO DATA',
-      pilotsLoaded:   (qry_PilotsQ1.data && qry_PilotsQ1.data.records) ? qry_PilotsQ1.data.records.length : 'NO DATA',
-      agedLoaded:     (qry_AgedPipeline.data && qry_AgedPipeline.data.records) ? qry_AgedPipeline.data.records.length : 'NO DATA',
-      firstUser:      (GetAllUsers.data && GetAllUsers.data.records && GetAllUsers.data.records[0]) ? GetAllUsers.data.records[0].Name : 'none',
+      usersLoaded:    (GetAllUsers.data && GetAllUsers.data.output) ? GetAllUsers.data.output.totalSize : 'NO DATA',
+      bookingsLoaded: (qry_Q1Bookings.data && qry_Q1Bookings.data.output) ? qry_Q1Bookings.data.output.totalSize : 'NO DATA',
+      pipelineLoaded: (qry_OpenPipeline.data && qry_OpenPipeline.data.output) ? qry_OpenPipeline.data.output.totalSize : 'NO DATA',
+      meetingsLoaded: (qry_MeetingsQ1.data && qry_MeetingsQ1.data.output) ? qry_MeetingsQ1.data.output.totalSize : 'NO DATA',
+      pilotsLoaded:   (qry_PilotsQ1.data && qry_PilotsQ1.data.output) ? qry_PilotsQ1.data.output.totalSize : 'NO DATA',
+      agedLoaded:     (qry_AgedPipeline.data && qry_AgedPipeline.data.output) ? qry_AgedPipeline.data.output.totalSize : 'NO DATA',
+      firstUser:      (GetAllUsers.data && GetAllUsers.data.output && GetAllUsers.data.output.records && GetAllUsers.data.output.records[0]) ? GetAllUsers.data.output.records[0].Name : 'none',
     };
   },
 
   agedPipelineTable() {
-    const recs = (qry_AgedPipeline.data && qry_AgedPipeline.data.records)
-      ? qry_AgedPipeline.data.records : [];
+    const recs = (qry_AgedPipeline.data && qry_AgedPipeline.data.output && qry_AgedPipeline.data.output.records)
+      ? qry_AgedPipeline.data.output.records : [];
     const today = new Date();
     return recs.map(r => {
       const created = new Date(r.CreatedDate);
