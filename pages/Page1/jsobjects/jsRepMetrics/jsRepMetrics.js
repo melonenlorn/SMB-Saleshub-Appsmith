@@ -241,19 +241,151 @@ export default {
   totalDeals()     { return jsRepMetrics.repTable().reduce((s, r) => s + r.closedWonDeals, 0); },
   totalCalls()     { return jsRepMetrics.repTable().reduce((s, r) => s + r.callsQ1, 0); },
 
+  // ── Enriched rep cards data (for leaderboard / cwRepCards widget) ─────────
+  // Adds target attainment, pilot attainment, win rate, steering hints
+  repCardsData() {
+    const baseRows     = jsRepMetrics.repTable();
+    const winRates     = jsHistorical.winRateByRep();
+    const teamAvgCalls = jsRepMetrics.totalCalls() / Math.max(baseRows.length, 1);
+
+    // Build userId lookup from GetAllUsers
+    const users = (GetAllUsers.data && GetAllUsers.data.output && GetAllUsers.data.output.records)
+      ? GetAllUsers.data.output.records : [];
+    const nameToId = {};
+    users.forEach(u => { nameToId[u.Name] = u.Id; });
+
+    return baseRows.map(r => {
+      const uid        = nameToId[r.repName] || r.repName;
+      const winRate    = winRates[uid] !== undefined ? winRates[uid] : null;
+      const attainment = jsTargets.attainment(r.bookingsARR, r.repName);
+      const pilotAtt   = jsTargets.pilotAttainment(r.activePilots, r.repName);
+      const pilotTgt   = jsTargets.pilotTarget(r.repName);
+      const arrTarget  = jsTargets.arrTarget(r.repName);
+      const teamKey    = jsTargets.teamForRep(r.manager);
+      const level      = jsTargets.levelLabel(r.repName);
+
+      let attainmentColor = '#94a3b8';
+      if (attainment !== null) {
+        attainmentColor = attainment >= 100 ? '#22c55e' : attainment >= 60 ? '#f59e0b' : '#ef4444';
+      }
+
+      const hints = jsTargets.steeringHints({ ...r, winRate, teamAvgCalls, agedDeals: 0 });
+
+      return {
+        ...r,
+        userId:              uid,
+        teamKey,
+        level,
+        arrTarget,
+        arrTargetDisplay:    jsRepMetrics.formatEUR(arrTarget),
+        attainment,
+        attainmentDisplay:   attainment !== null ? attainment + '%' : 'N/A',
+        attainmentColor,
+        pilotTarget:         pilotTgt,
+        pilotAttainment:     pilotAtt,
+        pilotAttainmentDisplay: pilotAtt + '%',
+        winRate,
+        winRateDisplay:      winRate !== null ? winRate + '%' : '-',
+        steeringHints:       hints,
+      };
+    });
+  },
+
+  // ── Forecast summary (for Pipeline Intelligence) ──────────────────────────
+  forecastSummary() {
+    const recs = (qry_DealTable.data && qry_DealTable.data.output && qry_DealTable.data.output.records)
+      ? qry_DealTable.data.output.records : [];
+
+    let commit = 0, bestCase = 0, pipeline = 0;
+    recs.forEach(r => {
+      const amt = Number(r.Amount) || 0;
+      const fc  = r.ForecastCategory || '';
+      if (fc === 'Forecast' || fc === 'MostLikely') commit   += amt;
+      else if (fc === 'BestCase')                   bestCase += amt;
+      else                                          pipeline += amt;
+    });
+
+    const totalARR    = commit + bestCase + pipeline;
+    const totalTarget = jsTargets.totalTarget();
+    const totalBooked = jsRepMetrics.totalBookings();
+    const gap         = Math.max(0, totalTarget - totalBooked - commit);
+
+    return {
+      commit:          Math.round(commit),
+      commitDisplay:   jsRepMetrics.formatEUR(commit),
+      bestCase:        Math.round(bestCase),
+      bestCaseDisplay: jsRepMetrics.formatEUR(bestCase),
+      pipeline:        Math.round(pipeline),
+      pipelineDisplay: jsRepMetrics.formatEUR(pipeline),
+      totalARR:        Math.round(totalARR),
+      totalARRDisplay: jsRepMetrics.formatEUR(totalARR),
+      gap:             Math.round(gap),
+      gapDisplay:      jsRepMetrics.formatEUR(gap),
+      totalTarget:     Math.round(totalTarget),
+      totalBooked:     Math.round(totalBooked),
+      coverageRatio:   totalBooked > 0 ? (totalARR / totalBooked).toFixed(1) + 'x' : '-',
+    };
+  },
+
+  // ── Full deal table with days-in-stage (for Pipeline Intelligence) ─────────
+  dealTable() {
+    const recs = (qry_DealTable.data && qry_DealTable.data.output && qry_DealTable.data.output.records)
+      ? qry_DealTable.data.output.records : [];
+    const today = new Date();
+
+    return recs.map(r => {
+      const closeDate       = r.CloseDate ? new Date(r.CloseDate) : null;
+      const lastStageChange = r.LastStageChangeDate ? new Date(r.LastStageChangeDate) : null;
+      const daysInStage     = lastStageChange
+        ? Math.floor((today - lastStageChange) / (1000 * 60 * 60 * 24)) : null;
+      const daysToClose     = closeDate
+        ? Math.floor((closeDate - today) / (1000 * 60 * 60 * 24)) : null;
+      const isOverdue       = closeDate ? closeDate < today : false;
+      const isClosingSoon   = !isOverdue && daysToClose !== null && daysToClose <= 14;
+
+      let rowStatus = 'normal';
+      if (isOverdue)                                  rowStatus = 'danger';
+      else if (isClosingSoon || !r.NextStep)          rowStatus = 'warning';
+
+      return {
+        id:                 r.Id,
+        repName:            (r.Owner && r.Owner.Name) ? r.Owner.Name : r.OwnerId,
+        ownerId:            r.OwnerId,
+        oppName:            r.Name,
+        account:            (r.Account && r.Account.Name) ? r.Account.Name : '-',
+        amount:             Math.round(Number(r.Amount) || 0),
+        amountDisplay:      jsRepMetrics.formatEUR(Number(r.Amount) || 0),
+        stage:              r.StageName || '-',
+        forecastCat:        r.ForecastCategory || '-',
+        closeDate:          r.CloseDate || '-',
+        daysToClose,
+        daysInStage,
+        daysInStageDisplay: daysInStage !== null ? daysInStage + 'd' : '-',
+        nextStep:           r.NextStep ? r.NextStep.substring(0, 120) : '-',
+        createdDate:        r.CreatedDate ? r.CreatedDate.substring(0, 10) : '-',
+        isOverdue,
+        isClosingSoon,
+        rowStatus,
+      };
+    });
+  },
+
   // ── Debug ──────────────────────────────────────────────────────────────────
 
   debug() {
     return {
-      usersLoaded:    (GetAllUsers.data && GetAllUsers.data.output) ? GetAllUsers.data.output.totalSize : 'NO DATA',
-      bookingsLoaded: (qry_Q1Bookings.data && qry_Q1Bookings.data.output) ? qry_Q1Bookings.data.output.totalSize : 'NO DATA',
-      pipelineLoaded: (qry_OpenPipeline.data && qry_OpenPipeline.data.output) ? qry_OpenPipeline.data.output.totalSize : 'NO DATA',
-      meetingsLoaded: (qry_MeetingsQ1.data && qry_MeetingsQ1.data.output) ? qry_MeetingsQ1.data.output.totalSize : 'NO DATA',
-      pilotsLoaded:   (qry_PilotsQ1.data && qry_PilotsQ1.data.output) ? qry_PilotsQ1.data.output.totalSize : 'NO DATA',
-      agedLoaded:     (qry_AgedPipeline.data && qry_AgedPipeline.data.output) ? qry_AgedPipeline.data.output.totalSize : 'NO DATA',
-      callsLoaded:    (() => { try { return (qry_CallsQ1.data && qry_CallsQ1.data.output) ? qry_CallsQ1.data.output.totalSize : 'NO DATA'; } catch(e) { return 'QUERY NOT FOUND'; } })(),
-      firstUser:      (GetAllUsers.data && GetAllUsers.data.output && GetAllUsers.data.output.records && GetAllUsers.data.output.records[0]) ? GetAllUsers.data.output.records[0].Name : 'none',
-      repCount:       jsRepMetrics.repTable().length,
+      usersLoaded:     (GetAllUsers.data && GetAllUsers.data.output) ? GetAllUsers.data.output.totalSize : 'NO DATA',
+      bookingsLoaded:  (qry_Q1Bookings.data && qry_Q1Bookings.data.output) ? qry_Q1Bookings.data.output.totalSize : 'NO DATA',
+      pipelineLoaded:  (qry_OpenPipeline.data && qry_OpenPipeline.data.output) ? qry_OpenPipeline.data.output.totalSize : 'NO DATA',
+      meetingsLoaded:  (qry_MeetingsQ1.data && qry_MeetingsQ1.data.output) ? qry_MeetingsQ1.data.output.totalSize : 'NO DATA',
+      pilotsLoaded:    (qry_PilotsQ1.data && qry_PilotsQ1.data.output) ? qry_PilotsQ1.data.output.totalSize : 'NO DATA',
+      agedLoaded:      (qry_AgedPipeline.data && qry_AgedPipeline.data.output) ? qry_AgedPipeline.data.output.totalSize : 'NO DATA',
+      callsLoaded:     (() => { try { return (qry_CallsQ1.data && qry_CallsQ1.data.output) ? qry_CallsQ1.data.output.totalSize : 'NO DATA'; } catch(e) { return 'QUERY NOT FOUND'; } })(),
+      dealTableLoaded: (qry_DealTable.data && qry_DealTable.data.output) ? qry_DealTable.data.output.totalSize : 'NO DATA',
+      quotasLoaded:    (qry_Quotas.data && qry_Quotas.data.output) ? qry_Quotas.data.output.totalSize : 'NO DATA',
+      firstUser:       (GetAllUsers.data && GetAllUsers.data.output && GetAllUsers.data.output.records && GetAllUsers.data.output.records[0]) ? GetAllUsers.data.output.records[0].Name : 'none',
+      repCount:        jsRepMetrics.repTable().length,
+      forecastSummary: jsRepMetrics.forecastSummary(),
     };
   },
 
