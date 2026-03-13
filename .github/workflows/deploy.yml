@@ -1,0 +1,16 @@
+name: Deploy to Appsmith
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Appsmith deploy
+        run: |
+          curl --location --fail-early --request POST \
+            "https://mkt-admin-app.production.heyjobs.de/api/v1/git/applications/69948610ce06fb33a1d8aa07/deploy?refName=master" \
+            --header "Authorization: Bearer ${{ secrets.APPSMITH_DEPLOY_TOKEN }}"
