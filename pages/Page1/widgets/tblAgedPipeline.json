@@ -2,7 +2,7 @@
   "accentColor": "#dc2626",
   "animateLoading": true,
   "borderRadius": "12px",
-  "bottomRow": 163,
+  "bottomRow": 219,
   "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
   "columnOrder": [
     "repName",
@@ -12,37 +12,20 @@
     "stage",
     "daysOpen",
     "closeDate",
-    "createdDate"
+    "nextStep"
   ],
   "defaultPageSize": 25,
   "dynamicBindingPathList": [
-    {
-      "key": "tableData"
-    },
-    {
-      "key": "primaryColumns.repName.computedValue"
-    },
-    {
-      "key": "primaryColumns.oppName.computedValue"
-    },
-    {
-      "key": "primaryColumns.account.computedValue"
-    },
-    {
-      "key": "primaryColumns.amountDisplay.computedValue"
-    },
-    {
-      "key": "primaryColumns.stage.computedValue"
-    },
-    {
-      "key": "primaryColumns.daysOpen.computedValue"
-    },
-    {
-      "key": "primaryColumns.closeDate.computedValue"
-    },
-    {
-      "key": "primaryColumns.createdDate.computedValue"
-    }
+    { "key": "tableData" },
+    { "key": "primaryColumns.repName.computedValue" },
+    { "key": "primaryColumns.oppName.computedValue" },
+    { "key": "primaryColumns.account.computedValue" },
+    { "key": "primaryColumns.amountDisplay.computedValue" },
+    { "key": "primaryColumns.stage.computedValue" },
+    { "key": "primaryColumns.daysOpen.computedValue" },
+    { "key": "primaryColumns.daysOpen.cellBackground" },
+    { "key": "primaryColumns.closeDate.computedValue" },
+    { "key": "primaryColumns.nextStep.computedValue" }
   ],
   "dynamicTriggerPathList": [],
   "isSortable": true,
@@ -54,6 +37,47 @@
   "leftColumn": 0,
   "pageSize": 25,
   "primaryColumns": {
+    "repName": {
+      "alias": "repName",
+      "columnType": "text",
+      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['repName']))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "BOLD",
+      "horizontalAlignment": "LEFT",
+      "id": "repName",
+      "index": 0,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isEditable": false,
+      "isVisible": true,
+      "label": "Rep",
+      "originalId": "repName",
+      "sticky": "",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 140
+    },
+    "oppName": {
+      "alias": "oppName",
+      "columnType": "text",
+      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['oppName']))}}",
+      "enableFilter": false,
+      "enableSort": false,
+      "horizontalAlignment": "LEFT",
+      "id": "oppName",
+      "index": 1,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isEditable": false,
+      "isVisible": true,
+      "label": "Opportunity",
+      "originalId": "oppName",
+      "sticky": "",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 190
+    },
     "account": {
       "alias": "account",
       "columnType": "text",
@@ -72,7 +96,7 @@
       "sticky": "",
       "textSize": "0.875rem",
       "verticalAlignment": "CENTER",
-      "width": 180
+      "width": 170
     },
     "amountDisplay": {
       "alias": "amountDisplay",
@@ -80,6 +104,7 @@
       "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['amountDisplay']))}}",
       "enableFilter": false,
       "enableSort": true,
+      "fontStyle": "BOLD",
       "horizontalAlignment": "RIGHT",
       "id": "amountDisplay",
       "index": 3,
@@ -93,6 +118,48 @@
       "textSize": "0.875rem",
       "verticalAlignment": "CENTER",
       "width": 100
+    },
+    "stage": {
+      "alias": "stage",
+      "columnType": "text",
+      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['stage']))}}",
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "stage",
+      "index": 4,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isEditable": false,
+      "isVisible": true,
+      "label": "Stage",
+      "originalId": "stage",
+      "sticky": "",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 140
+    },
+    "daysOpen": {
+      "alias": "daysOpen",
+      "columnType": "number",
+      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['daysOpen']))}}",
+      "cellBackground": "{{tblAgedPipeline.processedTableData.map((currentRow) => Number(currentRow['daysOpen']) >= 180 ? '#fee2e2' : Number(currentRow['daysOpen']) >= 120 ? '#fef9c3' : '#fafafa')}}",
+      "enableFilter": false,
+      "enableSort": true,
+      "fontStyle": "BOLD",
+      "horizontalAlignment": "CENTER",
+      "id": "daysOpen",
+      "index": 5,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isEditable": false,
+      "isVisible": true,
+      "label": "Tage offen",
+      "originalId": "daysOpen",
+      "sticky": "",
+      "textSize": "0.875rem",
+      "verticalAlignment": "CENTER",
+      "width": 90
     },
     "closeDate": {
       "alias": "closeDate",
@@ -114,110 +181,31 @@
       "verticalAlignment": "CENTER",
       "width": 110
     },
-    "createdDate": {
-      "alias": "createdDate",
+    "nextStep": {
+      "alias": "nextStep",
       "columnType": "text",
-      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['createdDate']))}}",
+      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['nextStep']))}}",
       "enableFilter": false,
-      "enableSort": true,
-      "horizontalAlignment": "CENTER",
-      "id": "createdDate",
+      "enableSort": false,
+      "horizontalAlignment": "LEFT",
+      "id": "nextStep",
       "index": 7,
       "isCellVisible": true,
       "isDerived": false,
       "isEditable": false,
       "isVisible": true,
-      "label": "Erstellt",
-      "originalId": "createdDate",
+      "label": "Next Step",
+      "originalId": "nextStep",
       "sticky": "",
-      "textSize": "0.875rem",
+      "textColor": "#64748b",
+      "textSize": "0.75rem",
       "verticalAlignment": "CENTER",
-      "width": 110
-    },
-    "daysOpen": {
-      "alias": "daysOpen",
-      "columnType": "number",
-      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['daysOpen']))}}",
-      "enableFilter": false,
-      "enableSort": true,
-      "horizontalAlignment": "CENTER",
-      "id": "daysOpen",
-      "index": 5,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isEditable": false,
-      "isVisible": true,
-      "label": "Tage offen",
-      "originalId": "daysOpen",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "verticalAlignment": "CENTER",
-      "width": 90
-    },
-    "oppName": {
-      "alias": "oppName",
-      "columnType": "text",
-      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['oppName']))}}",
-      "enableFilter": false,
-      "enableSort": false,
-      "horizontalAlignment": "LEFT",
-      "id": "oppName",
-      "index": 1,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isEditable": false,
-      "isVisible": true,
-      "label": "Opportunity",
-      "originalId": "oppName",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "verticalAlignment": "CENTER",
-      "width": 200
-    },
-    "repName": {
-      "alias": "repName",
-      "columnType": "text",
-      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['repName']))}}",
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "repName",
-      "index": 0,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isEditable": false,
-      "isVisible": true,
-      "label": "Rep",
-      "originalId": "repName",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "verticalAlignment": "CENTER",
-      "width": 140
-    },
-    "stage": {
-      "alias": "stage",
-      "columnType": "text",
-      "computedValue": "{{tblAgedPipeline.processedTableData.map((currentRow, currentIndex) => ( currentRow['stage']))}}",
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "stage",
-      "index": 4,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isEditable": false,
-      "isVisible": true,
-      "label": "Stage",
-      "originalId": "stage",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "verticalAlignment": "CENTER",
-      "width": 140
+      "width": 220
     }
   },
   "rightColumn": 64,
   "tableData": "{{jsRepMetrics.agedPipelineTable()}}",
-  "topRow": 103,
+  "topRow": 159,
   "type": "TABLE_WIDGET_V2",
   "version": 1,
   "widgetId": "tbl_aged",

@@ -1,6 +1,6 @@
 {
   "animateLoading": true,
-  "backgroundColor": "#faf5ff",
+  "backgroundColor": "#f0f9ff",
   "borderRadius": "12px",
   "bottomRow": 31,
   "boxShadow": "0px 1px 3px rgba(16,24,40,0.08)",
@@ -10,20 +10,20 @@
     }
   ],
   "dynamicTriggerPathList": [],
-  "iconColor": "#7c3aed",
-  "iconName": "calendar",
+  "iconColor": "#0891b2",
+  "iconName": "mobile",
   "isVisible": true,
-  "label": "Demo Meetings",
-  "labelTextColor": "#4c1d95",
-  "leftColumn": 43,
-  "primaryText": "{{jsRepMetrics.totalMeetings()}}",
+  "label": "Q1 Calls",
+  "labelTextColor": "#0e7490",
+  "leftColumn": 53,
+  "primaryText": "{{jsRepMetrics.totalCalls()}}",
   "primaryTextColor": "#1c1917",
-  "rightColumn": 52,
-  "secondaryText": "Events mit 'Demo' Q1",
+  "rightColumn": 64,
+  "secondaryText": "Completed Call Tasks",
   "secondaryTextColor": "#64748b",
   "topRow": 13,
   "type": "STATBOX_WIDGET",
   "version": 1,
-  "widgetId": "stat_pilot",
-  "widgetName": "statBoxPilots"
+  "widgetId": "stat_calls",
+  "widgetName": "statBoxCalls"
 }

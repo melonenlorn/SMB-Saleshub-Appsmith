@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "69948610ce06fb33a1d8aa07_b0000001-0000-4000-8000-000000000005",
-  "id": "Page1_qry_AgedPipeline",
+  "gitSyncId": "69948610ce06fb33a1d8aa07_b0000001-0000-4000-8000-000000000007",
+  "id": "Page1_qry_CallsQ1",
   "pluginId": "salesforce",
   "pluginType": "EXTERNAL_SAAS",
   "unpublishedAction": {
@@ -18,10 +18,10 @@
           "params": [
             {
               "key": "q",
-              "value": "SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, CloseDate, StageName, NextStep, AccountId, Account.Name FROM Opportunity WHERE IsClosed = false AND CreatedDate < 2025-12-12T00:00:00Z AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY CreatedDate ASC LIMIT 200"
+              "value": "SELECT OwnerId, Owner.Name, COUNT(Id) FROM Task WHERE TaskSubtype = 'Call' AND Status = 'Completed' AND CreatedDate >= 2026-01-01T00:00:00Z AND CreatedDate <= 2026-03-31T23:59:59Z GROUP BY OwnerId, Owner.Name ORDER BY COUNT(Id) DESC LIMIT 200"
             }
           ],
-          "path": "query/?q=SELECT OwnerId, Owner.Name, Amount, Name, CreatedDate, CloseDate, StageName, NextStep, AccountId, Account.Name FROM Opportunity WHERE IsClosed = false AND CreatedDate < 2025-12-12T00:00:00Z AND Owner.GTM_Motion_User__c = 'Inside Sales' ORDER BY CreatedDate ASC LIMIT 200"
+          "path": "query/?q=SELECT OwnerId, Owner.Name, COUNT(Id) FROM Task WHERE TaskSubtype = 'Call' AND Status = 'Completed' AND CreatedDate >= 2026-01-01T00:00:00Z AND CreatedDate <= 2026-03-31T23:59:59Z GROUP BY OwnerId, Owner.Name ORDER BY COUNT(Id) DESC LIMIT 200"
         },
         "command": "CUSTOM_ACTION"
       },
@@ -36,7 +36,7 @@
       "pluginId": "salesforce"
     },
     "dynamicBindingPathList": [],
-    "name": "qry_AgedPipeline",
+    "name": "qry_CallsQ1",
     "pageId": "Page1",
     "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false

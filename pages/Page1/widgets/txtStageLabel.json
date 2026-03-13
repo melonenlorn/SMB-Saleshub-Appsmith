@@ -1,7 +1,7 @@
 {
   "animateLoading": false,
   "backgroundColor": "transparent",
-  "bottomRow": 37,
+  "bottomRow": 113,
   "dynamicBindingPathList": [],
   "dynamicTriggerPathList": [],
   "fontSize": "0.875rem",
@@ -9,12 +9,12 @@
   "isVisible": true,
   "leftColumn": 1,
   "rightColumn": 63,
-  "text": "REP PERFORMANCE  ·  Q1 2026  ·  Score = relative percentile rank (Bookings 40% · Coverage 25% · Demos 20% · Calls 15%)",
+  "text": "PIPELINE BY STAGE  ·  Inside Sales open opportunities",
   "textAlign": "LEFT",
   "textColor": "#475569",
-  "topRow": 32,
+  "topRow": 108,
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "lbl_rep",
-  "widgetName": "txtRepLabel"
+  "widgetId": "lbl_stage",
+  "widgetName": "txtStageLabel"
 }

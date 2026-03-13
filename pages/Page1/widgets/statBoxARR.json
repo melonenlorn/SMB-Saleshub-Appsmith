@@ -18,7 +18,7 @@
   "leftColumn": 0,
   "primaryText": "{{jsRepMetrics.formatEUR(jsRepMetrics.totalBookings())}}",
   "primaryTextColor": "#1c1917",
-  "rightColumn": 12,
+  "rightColumn": 10,
   "secondaryText": "Closed Won ARR",
   "secondaryTextColor": "#78716c",
   "topRow": 13,
