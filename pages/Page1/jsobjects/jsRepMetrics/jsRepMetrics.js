@@ -71,19 +71,23 @@ export default {
   },
 
   callsByOwner() {
-    const recs = (qry_CallsQ1.data && qry_CallsQ1.data.output && qry_CallsQ1.data.output.records)
-      ? qry_CallsQ1.data.output.records : [];
-    const allowedIds = jsRepMetrics._insideSalesIds();
-    const map = {};
-    recs.forEach(r => {
-      const id = r.OwnerId;
-      if (!allowedIds.has(id)) return;
-      // Aggregate query returns Owner.Name as flat 'Name', count as expr0
-      const name = r.Name || id;
-      if (!map[id]) map[id] = { name, count: 0 };
-      map[id].count += Number(r.expr0) || 0;
-    });
-    return map;
+    try {
+      const recs = (qry_CallsQ1.data && qry_CallsQ1.data.output && qry_CallsQ1.data.output.records)
+        ? qry_CallsQ1.data.output.records : [];
+      const allowedIds = jsRepMetrics._insideSalesIds();
+      const map = {};
+      recs.forEach(r => {
+        const id = r.OwnerId;
+        if (!allowedIds.has(id)) return;
+        // Aggregate query returns Owner.Name as flat 'Name', count as expr0
+        const name = r.Name || id;
+        if (!map[id]) map[id] = { name, count: 0 };
+        map[id].count += Number(r.expr0) || 0;
+      });
+      return map;
+    } catch (e) {
+      return {};
+    }
   },
 
   // ── Helpers ────────────────────────────────────────────────────────────────
@@ -247,7 +251,7 @@ export default {
       meetingsLoaded: (qry_MeetingsQ1.data && qry_MeetingsQ1.data.output) ? qry_MeetingsQ1.data.output.totalSize : 'NO DATA',
       pilotsLoaded:   (qry_PilotsQ1.data && qry_PilotsQ1.data.output) ? qry_PilotsQ1.data.output.totalSize : 'NO DATA',
       agedLoaded:     (qry_AgedPipeline.data && qry_AgedPipeline.data.output) ? qry_AgedPipeline.data.output.totalSize : 'NO DATA',
-      callsLoaded:    (qry_CallsQ1.data && qry_CallsQ1.data.output) ? qry_CallsQ1.data.output.totalSize : 'NO DATA',
+      callsLoaded:    (() => { try { return (qry_CallsQ1.data && qry_CallsQ1.data.output) ? qry_CallsQ1.data.output.totalSize : 'NO DATA'; } catch(e) { return 'QUERY NOT FOUND'; } })(),
       firstUser:      (GetAllUsers.data && GetAllUsers.data.output && GetAllUsers.data.output.records && GetAllUsers.data.output.records[0]) ? GetAllUsers.data.output.records[0].Name : 'none',
       repCount:       jsRepMetrics.repTable().length,
     };
